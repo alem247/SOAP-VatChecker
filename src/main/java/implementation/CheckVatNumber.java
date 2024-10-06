@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class CheckVatNumber {
     public static void main(String[] args) {
         if (args.length != 2) {
-                System.out.println("Uporaba: java CheckVatNumber.java <CountryCode> <VatNumber>");
+                System.out.println("Uporaba: java -jar CheckVatNumber.java <CountryCode> <VatNumber>");
             return;
         }
 
