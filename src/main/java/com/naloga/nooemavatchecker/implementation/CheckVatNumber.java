@@ -1,6 +1,8 @@
-package implementation;
+package com.naloga.nooemavatchecker.implementation;
 
-import eu.vies.vat.*;
+import eu.vies.vat.CheckVatPortType;
+import eu.vies.vat.CheckVatService;
+
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -12,7 +14,7 @@ public class CheckVatNumber {
 
     public static void main(String[] args) {
         if (args.length != 2) {
-            System.out.println("Uporaba: java -jar CheckVatNumber.java <CountryCode> <VatNumber>");
+            System.out.println("Uporaba: java -jar build/libs/CheckVatNumber-version.jar <CountryCode> <VatNumber>");
             return;
         }
 
@@ -47,9 +49,9 @@ public class CheckVatNumber {
             System.out.println("Podatki zavezanca za DDV:");
             System.out.println("Ime podjetja: " + nameHolder.value);
             System.out.println("Naslov: " + addressHolder.value);
-            System.out.println("DDV številka je veljavna.");
+            System.out.println("DDV stevilka je veljavna.");
         } else {
-            System.out.println("DDV številka ni veljavna.");
+            System.out.println("Davcna stevilka ne obstaja v VIES.");
         }
     }
 }
