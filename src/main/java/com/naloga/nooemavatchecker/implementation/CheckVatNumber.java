@@ -22,7 +22,7 @@ public class CheckVatNumber {
         String vatNumber = args[1];
 
         try {
-            checkAndPrintVatDetails(countryCode, vatNumber);
+            checkVatDetails(countryCode, vatNumber);
         } catch (WebServiceException e) {
             System.out.println("Napaka pri klicu storitve: " + e.getMessage());
         } catch (DatatypeConfigurationException e) {
@@ -30,7 +30,7 @@ public class CheckVatNumber {
         }
     }
 
-    private static void checkAndPrintVatDetails(String countryCode, String vatNumber)
+    public static String checkVatDetails(String countryCode, String vatNumber)
             throws WebServiceException, DatatypeConfigurationException {
         CheckVatService service = new CheckVatService();
         CheckVatPortType port = service.getCheckVatPort();
@@ -45,13 +45,18 @@ public class CheckVatNumber {
 
         port.checkVat(countryCodeHolder, vatNumberHolder, requestDateHolder, validHolder, nameHolder, addressHolder);
 
+        StringBuilder response = new StringBuilder();
+
         if (validHolder.value) {
-            System.out.println("Podatki zavezanca za DDV:");
-            System.out.println("Ime podjetja: " + nameHolder.value);
-            System.out.println("Naslov: " + addressHolder.value);
-            System.out.println("DDV stevilka je veljavna.");
+            response.append("Podatki zavezanca za DDV:\n");
+            response.append("Ime podjetja: ").append(nameHolder.value).append("\n");
+            response.append("Naslov: ").append(addressHolder.value).append("\n");
+            response.append("DDV stevilka je veljavna.");
         } else {
-            System.out.println("Davcna stevilka ne obstaja v VIES.");
+            response.append("Davcna stevilka ne obstaja v VIES.");
         }
+
+        return response.toString();
     }
+
 }

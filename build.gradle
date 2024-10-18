@@ -1,6 +1,9 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.0'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'war'
 }
 
 group = 'com.naloga'
@@ -28,6 +31,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.sun.xml.ws:jaxws-rt:4.0.3'  // correct JAX-WS runtime for Java 11+
     implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.5'
     implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.2'
