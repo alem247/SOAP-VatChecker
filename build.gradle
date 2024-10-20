@@ -1,7 +1,5 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.2.0'
-    id 'io.spring.dependency-management' version '1.1.0'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'war'
 }
@@ -31,13 +29,16 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework:spring-webmvc:6.1.13'
     implementation 'com.sun.xml.ws:jaxws-rt:4.0.3'  // correct JAX-WS runtime for Java 11+
     implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.5'
     implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.2'
     implementation 'jakarta.xml.ws:jakarta.xml.ws-api:4.0.2'
     implementation 'jakarta.xml.soap:jakarta.xml.soap-api:3.0.2'
     implementation 'com.sun.xml.messaging.saaj:saaj-impl:1.5.2'   // SOAP implementation
+    implementation 'org.springframework.security:spring-security-core:6.3.0'
+    implementation 'org.springframework.security:spring-security-config:6.2.0'
+    implementation 'org.springframework.security:spring-security-web:6.3.0'
 }
 
 shadowJar {
