@@ -1,8 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="jakarta.servlet.*" %>
-<%@ page import="jakarta.servlet.http.*" %>
+<%@ page import="javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
 <%@ page import="java.io.*" %>
-<%@ page import="com.naloga.nooemavatchecker.implementation.CheckVatNumber" %>
 
 <!DOCTYPE html>
 <html lang="en">

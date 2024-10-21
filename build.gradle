@@ -1,15 +1,14 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'war'
 }
 
 group = 'com.naloga'
-version = '0.0.2'
+version = '1'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(8)
     }
 }
 
@@ -29,25 +28,12 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'org.springframework:spring-webmvc:6.0.7'
-    implementation 'com.sun.xml.ws:jaxws-rt:4.0.3'  // correct JAX-WS runtime for Java 11+
-    implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.5'
-    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.2'
-    implementation 'jakarta.xml.ws:jakarta.xml.ws-api:4.0.2'
-    implementation 'jakarta.xml.soap:jakarta.xml.soap-api:3.0.2'
-    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
-    implementation 'com.sun.xml.messaging.saaj:saaj-impl:1.5.2'   // SOAP implementation
-    implementation 'org.springframework.security:spring-security-core:6.3.0'
-    implementation 'org.springframework.security:spring-security-config:6.2.0'
-    implementation 'org.springframework.security:spring-security-web:6.3.0'
+    implementation 'com.sun.xml.ws:jaxws-rt:2.2.8'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.0'
+    providedCompile 'javax:javaee-api:7.0'
+    implementation 'com.sun.xml.messaging.saaj:saaj-impl:1.5.2'
 }
 
-shadowJar {
-    archiveBaseName.set("CheckVatNumber")
-    manifest {
-        attributes 'Main-Class': 'com.naloga.nooemavatchecker.implementation.CheckVatNumber'
-    }
-}
 
 tasks.withType(Jar) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
