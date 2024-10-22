@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preverjanje davčne številke</title>
+    <style>
+        body{background-color:#f4f4f9;font-family:Arial,sans-serif;color:#333;padding:20px}
+        .container{max-width:600px;margin:50px auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+        h1{text-align:center;color:#333}
+        form{display:flex;flex-direction:column;gap:20px}
+        label{font-weight:bold;margin-bottom:5px}
+        input{padding:10px;border-radius:5px;border:1px solid #ddd;width:100%}
+        button{padding:10px;background-color:#28a745;color:white;border:none;border-radius:5px;cursor:pointer;font-size:16px}
+        button:hover{background-color:#218838}
+        #result{margin-top:20px;padding:10px;border:1px solid #ddd;border-radius:5px;background-color:#f9f9f9}
+        .error{color:red}
+        .success{color:green}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Preverjanje davcne stevilke</h1>
+    <form th:action="@{/checkVat}" method="post" th:object="${VatCheckRequest}">
+        <label for="countryCode">Koda drzave (npr. SI):</label>
+        <input type="text" id="countryCode" th:field="*{countryCode}" name="countryCode" required>
+        <label for="vatNumber">Davcna stevilka:</label>
+        <input type="text" id="vatNumber" th:field="*{vatNumber}" name="vatNumber" required>
+        <button type="submit">Preveri</button>
+    </form>
+
+    <div id="result" th:if="${VatCheckResponse != null}">
+        <div th:if="${VatCheckResponse.companyName != null or VatCheckResponse.address != null}">
+            <h2>Podatki zavezanca za DDV:</h2>
+            <p><strong>Ime podjetja:</strong> <span th:text="${VatCheckResponse.companyName}"></span></p>
+            <p><strong>Naslov:</strong> <span th:text="${VatCheckResponse.address}"></span></p>
+            <p>DDV številka je veljavna.</p>
+        </div>
+        <div th:if="${VatCheckResponse.companyName == null and VatCheckResponse.address == null}">
+            <p class="error">Davcna stevilka ne obstaja v VIES.</p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
