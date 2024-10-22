@@ -1,4 +1,3 @@
-
 package eu.vies.vat;
 
 import javax.xml.bind.annotation.XmlAccessType;

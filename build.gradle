@@ -22,10 +22,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'com.sun.xml.ws:jaxws-rt:2.2.8'
-    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.0'
     providedCompile 'javax:javaee-api:7.0'
-    implementation 'com.sun.xml.messaging.saaj:saaj-impl:1.5.2'
 }
 
 tasks.named('test') {
